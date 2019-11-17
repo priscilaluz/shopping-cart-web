@@ -1,0 +1,28 @@
+<form name="userForm" (ngSubmit) = "login()">
+        <fieldset>
+            <legend>Login</legend>
+            <div class="alert alert-danger" role="alert" *ngIf="erros">
+                {{erros}}
+            </div>
+            <hr>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6 offset-md-3">
+                        <label for="nome">Name:</label>
+                        <input type="text" class="form-control" name="name" placeholder="Name" required [(ngModel)]="user.name">
+                    </div>
+                    <div class="col-md-6 offset-md-3">
+                        <label for="nome">Email:</label>
+                        <input type="email" class="form-control" name="email" placeholder="email" required [(ngModel)]="user.email">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6 offset-md-3">
+                        <button type="submit" class="btn btn-info">Login</button>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+          

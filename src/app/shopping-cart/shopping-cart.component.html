@@ -1,0 +1,88 @@
+<form name="userForm">
+    <fieldset>
+        <legend>Shopping Cart</legend>
+        <div class="alert alert-danger" role="alert" *ngIf="erros">
+            {{erros}}
+        </div>
+        <hr>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-4">
+                    <b>Name: </b><span>{{user.name}}</span>
+                </div>
+                <div class="col-md-4">
+                    <b>Email: </b><span>{{user.email}}</span>
+                </div>
+            </div>
+        </div>
+
+        <hr/>
+        <div class="form-group">
+            <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-sm table-bordered">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th style="width: 50%">NAME</th>
+                                    <th style="width: 20%">AMOUNT</th>
+                                    <th style="width: 20%">VALUE</th>
+                                    <th style="width: 10%"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let shopping of user.shoppingcart.shoppings">
+                                    <td>{{shopping.item.name}}</td>
+                                    <td>{{shopping.amount}}</td>
+                                    <td>{{shopping.item.value | currency}}</td>
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteShopping(shopping.id)">Delete</button>&nbsp;
+                                    </td>
+                                </tr>
+                                <tr *ngIf="user.shoppingcart.total>0">
+                                    <td colspan="2"></td>
+                                    <td colspan="2"><b style="color:#830b05;">{{user.shoppingcart.total | currency}}</b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+    </fieldset>
+</form>
+
+<button type="button" class="btn btn-info" (click)="open(content)">Add Item</button>&nbsp;
+<button type="button" class="btn btn-info" (click)="closeShopping()">Buy Now</button>
+          
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Item</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-sm table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th style="width: 55%">NAME</th>
+                            <th style="width: 20%">VALUE</th>
+                            <th style="width: 20%">AMOUNT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let shopping of shoppings">
+                            <td>{{shopping.item.name}}</td>
+                            <td>{{shopping.item.value | currency}}</td>
+                            <td><input type="text" class="form-control" numeric numericType="number" maxlength="4" name="amount" placeholder="Amount" required [(ngModel)]="shopping.amount"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info" (click)="saveShoppings()">Save</button>
+    </div>
+</ng-template>

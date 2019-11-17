@@ -1,0 +1,57 @@
+<form name="itemForm" (ngSubmit) = "save()">
+    <fieldset>
+        <legend>Item</legend>
+        <div class="alert alert-danger" role="alert" *ngIf="erros">
+            {{erros}}
+        </div>
+        <hr>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-8">
+                    <label for="nome">Name:</label>
+                    <input type="text" class="form-control" name="name" placeholder="Name" required [(ngModel)]="item.name">
+                </div>
+                <div class="col-md-4">
+                    <label for="valor">Value:</label>
+                    <input type="text" numeric numericType="decimal" class="form-control" name="value" placeholder="Value" minFractionDigits="2"
+                        required [(ngModel)]="item.value"/>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-info">Save</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-sm table-bordered">
+                        <thead class="thead-light">
+                            <tr>
+                                <th style="width: 10%">ID</th>
+                                <th style="width: 55%">NAME</th>
+                                <th style="width: 20%">VALUE</th>
+                                <th style="width: 15%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of itens">
+                                <td>{{item.id}}</td>
+                                <td>{{item.name}}</td>
+                                <td>{{item.value | currency}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-danger btn-sm" (click)="delete(item.id)">Delete</button>&nbsp;
+                                    <button type="button" class="btn btn-primary btn-sm" (click)="edit(item.id)">Edit</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>
+      

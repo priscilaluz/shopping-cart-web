@@ -1,0 +1,57 @@
+<form name="userForm" (ngSubmit) = "save()">
+        <fieldset>
+            <legend>User</legend>
+            <div class="alert alert-danger" role="alert" *ngIf="erros">
+                {{erros}}
+            </div>
+            <hr>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="nome">Name:</label>
+                        <input type="text" class="form-control" name="name" placeholder="Name" required [(ngModel)]="user.name">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="nome">Email:</label>
+                        <input type="email" class="form-control" name="email" placeholder="email" pattern="[a-zA-Z ]*" required [(ngModel)]="user.email">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-info">Save</button>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-sm table-bordered">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th style="width: 10%">ID</th>
+                                    <th style="width: 35%">NAME</th>
+                                    <th style="width: 30%">EMAIL</th>
+                                    <th style="width: 21%"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let user of users">
+                                    <td>{{user.id}}</td>
+                                    <td>{{user.name}}</td>
+                                    <td>{{user.email}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger btn-sm" (click)="delete(user.id)">Delete</button>&nbsp;
+                                        <button type="button" class="btn btn-primary btn-sm" (click)="edit(user.id)">Edit</button>&nbsp;
+                                        <button type="button" class="btn btn-success btn-sm" (click)="buyItems(user.id)">Buy Itens</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+          
