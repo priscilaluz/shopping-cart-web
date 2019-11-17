@@ -2,7 +2,7 @@
 
 Shopping cart solution where you can create Users, Items and Cart.
 Project build with Angular 8.
-This project is the front end of the application, to access the functionality you need to run the api
+This project is the front end of the application, to access the back-end methods you need to run the API (https://github.com/priscilaluz/shopping-cart-api)
 
 ## Prerequisites
 
